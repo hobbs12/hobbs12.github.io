@@ -27,7 +27,6 @@
   <tr>
     <td>Skills Sets</td>
     <td>Code completely learned/learning from The Odin Project</td>
-    <td>User analysis</td>
   </tr>
   <tr>
   </tr>
