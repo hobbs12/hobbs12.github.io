@@ -26,7 +26,7 @@
   </tr>
   <tr>
     <td><strong>Skills Sets</strong></td>
-    <td>Code completely learned/learning from The Odin Project</td>
+    <td>Code completely learned/learning from <a href="http://www.theodinproject.com/">The Odin Project</a></td>
   </tr>
   <tr>
     <td><strong>Personality</strong></td>
