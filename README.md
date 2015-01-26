@@ -29,8 +29,8 @@
     <td>Code completely learned/learning from The Odin Project</td>
   </tr>
   <tr>
-  </tr>
-  <tr>
+    <td><strong>Personality</strong></td>
+    <td>Laid-back perfectionist and highly-social introvert</td>
   </tr>
 </table>
 <html>
