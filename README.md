@@ -4,19 +4,19 @@
 <h3>HW1</h3>
 <table>
   <tr>
-    <td>Name</td>
+    <td><strong>Name</strong></td>
     <td>Amanda Hobbs</td>
   </tr>
   <tr>
-    <td>Department</td>
+    <td><strong>Department</strong></td>
     <td>School of Industrial Engineering</td>  
   </tr>
   <tr>
-    <td>Education</td>
+    <td><strong>Education</strong></td>
     <td>B.S. from <a href="http://www.clemson.edu/ces/departments/ie/">Clemson University</a></td>
   </tr>
   <tr>
-    <td>Best Work Days/Times</td>
+    <td><strong>Best Work Days/Times</strong></td>
     <td>
     <ul>
     <li>Thursdays</li>
@@ -25,7 +25,7 @@
     </ul></td>
   </tr>
   <tr>
-    <td>Skills Sets</td>
+    <td><strong>Skills Sets</strong></td>
     <td>Code completely learned/learning from The Odin Project</td>
   </tr>
   <tr>
