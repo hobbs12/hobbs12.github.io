@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <td>Education</td>
-    <td>Clemson University</td>
+    <td>B.S. from <a href="http://www.clemson.edu/ces/departments/ie/">Clemson University</a></td>
   </tr>
   <tr>
     <td>Best Work Days/Times</td>
