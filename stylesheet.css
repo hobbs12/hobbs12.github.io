@@ -11,7 +11,7 @@ table {
 
 table tr td:first-child {
     font-weight: bold;
-    background-color: #fffbff;
+    background-color: #dedede;
 }
 
 table tr td {
@@ -19,5 +19,5 @@ table tr td {
 }
 
 tr:nth-child(even) {
-    background-color: #fffbff;
+    background-color: #dedede;
 }
