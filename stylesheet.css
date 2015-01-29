@@ -21,3 +21,13 @@ table tr td {
 tr:nth-child(even) {
     background-color: #ededed;
 }
+
+a:hover{
+    color: F66733;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a {
+ color:#000000;   
+}
