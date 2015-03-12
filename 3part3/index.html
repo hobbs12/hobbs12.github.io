@@ -37,11 +37,10 @@
 
 
 		<script type = "text/javascript">
-
+		
 		// SUBSTANTIAL pieces of code was written with understanding from and code borrowed from "Interactive Data Visualicaiton for the Web" by Scott Murray
-		// REFERNECE:
+		// REFERENCE:
 		// Murray, S. (2013). Interactive Data Visualization for the Web. Sebastopol, CA: O’Reilly Media.
-
 
 			//Width and height
 			var w = 600;
@@ -183,56 +182,7 @@
 			   		return h - yScale(d) - chartPadding; })
 			    .attr("fill", "#939393");
 
-			//create squares for legend - FRESHMEN
-			svg.selectAll("squareFresh")
-				.enter()
-				.append("rect")
-				.attr("x", 500)
-				.attr("y", 20)
-				.attr("width", 10)
-				.attr("height", 10)
-				.attr("fill", "#000000");
 
-			//create squares for legend - SOPH
-			svg.selectAll("squareSoph")
-				.enter()
-				.append("rect")
-				.attr("x", 500)
-				.attr("y", 40)
-				.attr("width", 10)
-				.attr("height", 10)
-				.attr("fill", "#3f3f3f");
-
-			//create squares for legend - JUNIOR
-			svg.selectAll("squareJun")
-				.enter()
-				.append("rect")
-				.attr("x", 500)
-				.attr("y", 60)
-				.attr("width", 10)
-				.attr("height", 10)
-				.attr("fill", "#696969");
-
-			//create squares for legend - SENIOR
-			svg.selectAll("squareSen")
-				.enter()
-				.append("rect")
-				.attr("x", 500)
-				.attr("y", 80)
-				.attr("width", 10)
-				.attr("height", 10)
-				.attr("fill", "#939393");
-
-//             //Add legend lables
-//             svg.selectAll("#Legend")
-//                 .data(data)
-//                 .enter()
-//                 .append("text")
-//                 .attr("x",w+p+40)
-//                 .attr("y",function(d,i){return 3+2*p+i*40})
-//                 .attr("fill", "black")
-//                 .attr("style","font-size:15px")
-//                 .text(function(d,i){return d.Year;});
 
 			//create labels FRESHMEN
 			svg.selectAll("labelFresh")
@@ -300,7 +250,6 @@
 			   .attr("fill", "white");
 
 
-
 			//Define X axis
 			var xAxis = d3.svg.axis()
 							  .scale(xScale)
@@ -312,10 +261,9 @@
 							  .orient("left")
 							  .ticks(10);
 
-
 			//APPEND AXES LABELS
  			svg.append("text")
-                .attr("x",2)
+                .attr("x",5)
                 .attr("y",175)
                 .attr("fill", "black")
                 .attr("transform","rotate(-90,10,"+(h/2+45)+")")
@@ -339,7 +287,7 @@
 			//CALL Y AXIS
 			svg.append("g")
 				.attr("class", "axis")
-				.attr("transform", "translate(" + chartPadding + "," + chartPadding/2 + ")")
+				.attr("transform", "translate(" + (chartPadding + 5) + "," + chartPadding/2 + ")")
 				.call(yAxis);
 
 			//FINAL CODE ENDING
