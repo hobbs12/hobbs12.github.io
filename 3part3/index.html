@@ -193,7 +193,7 @@
 				.attr("height", 10)
 				.attr("fill", "#000000");
 
-//create squares for legend - SOPH
+			//create squares for legend - SOPH
 			svg.selectAll("squareSoph")
 				.enter()
 				.append("rect")
@@ -203,7 +203,7 @@
 				.attr("height", 10)
 				.attr("fill", "#3f3f3f");
 
-//create squares for legend - JUNIOR
+			//create squares for legend - JUNIOR
 			svg.selectAll("squareJun")
 				.enter()
 				.append("rect")
@@ -213,7 +213,7 @@
 				.attr("height", 10)
 				.attr("fill", "#696969");
 
-//create squares for legend - SENIOR
+			//create squares for legend - SENIOR
 			svg.selectAll("squareSen")
 				.enter()
 				.append("rect")
@@ -223,17 +223,6 @@
 				.attr("height", 10)
 				.attr("fill", "#939393");
 
-// //Add Legend circles
-//             svg.selectAll("circle")
-//                 .data(data)
-//                 .enter()
-//                 .append("circle")
-//                 .attr("cx", w+p+20)
-//                 .attr("cy", function(d,i){return 2*p+i*40})
-//                 .attr("r", 15)
-//                 .attr("fill", function(d,i){
-//                   return "rgb("+(i/(data.length+1))*0+","+(i/(data.length+1))*255+","+(1-i/(data.length+1))*255+")"
-//                 })
 //             //Add legend lables
 //             svg.selectAll("#Legend")
 //                 .data(data)
@@ -326,7 +315,7 @@
 
 			//APPEND AXES LABELS
  			svg.append("text")
-                .attr("x",20)
+                .attr("x",2)
                 .attr("y",175)
                 .attr("fill", "black")
                 .attr("transform","rotate(-90,10,"+(h/2+45)+")")
