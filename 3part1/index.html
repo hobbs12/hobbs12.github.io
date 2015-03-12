@@ -161,7 +161,7 @@
 			//
             svg.append("text")
                 .attr("x",20)
-                .attr("y",175)
+                .attr("y",205)
                 .attr("fill", "black")
                 .attr("transform","rotate(-90,10,"+(h/2+45)+")")
                 .attr("style","font-size:14px","font-family:sans-serif")
@@ -183,7 +183,7 @@
 			//CALL Y AXIS
 			svg.append("g")
 				.attr("class", "axis")
-				.attr("transform", "translate(" + chartPadding + "," + (chartPadding/2 + 30) + ")")
+				.attr("transform", "translate(" + chartPadding + "," + (chartPadding/2) + ")")
 				.call(yAxis);
 
 
