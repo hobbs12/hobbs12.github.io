@@ -160,20 +160,20 @@
 
 			//
 			 svg.append("text")
-                .attr("x",w/2+p-50)
-                .attr("y",h+2*p-15)
+                .attr("x",w/2+chartPadding-50)
+                .attr("y",h+2*chartPadding-15)
                 .attr("fill", "black")
                 .attr("style","font-size:20px")
                 .text(function(){return "Universities";});
             svg.append("text")
                 .attr("x",-40)
-                .attr("y",h/2+p)
+                .attr("y",h/2+chartPadding)
                 .attr("fill", "black")
                 .attr("transform","rotate(-90,10,"+(h/2+45)+")")
                 .attr("style","font-size:20px")
                 .text(function(){return "Number of Seniors";});
 			svg.append("text")
-                .attr("x",w/2+p-50)
+                .attr("x",w/2+chartPadding-50)
                 .attr("y",-15)
                 .attr("fill", "black")
                 .attr("style","font-size:20px")
