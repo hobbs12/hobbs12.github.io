@@ -260,6 +260,22 @@
 							  .orient("left")
 							  .ticks(10);
 
+//APPEND AXES LABELS
+ 			svg.append("text")
+                .attr("x",20)
+                .attr("y",175)
+                .attr("fill", "black")
+                .attr("transform","rotate(-90,10,"+(h/2+45)+")")
+                .attr("style","font-size:14px","font-family:sans-serif")
+                .text(function(){return "Number of Students";});
+			svg.append("text")
+                .attr("x",190)
+                .attr("y",12)
+                .attr("fill", "black")
+                .attr("style","font-size:14px","font-family: sans-serif")
+                .text(function(){return "IE Students at 5 Universities";});
+
+
 			//CALL AXES
 			//CALL X AXIS
 			svg.append("g")

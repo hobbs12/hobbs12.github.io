@@ -183,7 +183,67 @@
 			   		return h - yScale(d) - chartPadding; })
 			    .attr("fill", "#939393");
 
+			//create squares for legend - FRESHMEN
+			svg.selectAll("squareFresh")
+				.enter()
+				.append("rect")
+				.attr("x", 500)
+				.attr("y", 20)
+				.attr("width", 10)
+				.attr("height", 10)
+				.attr("fill", "#000000");
 
+//create squares for legend - SOPH
+			svg.selectAll("squareSoph")
+				.enter()
+				.append("rect")
+				.attr("x", 500)
+				.attr("y", 40)
+				.attr("width", 10)
+				.attr("height", 10)
+				.attr("fill", "#3f3f3f");
+
+//create squares for legend - JUNIOR
+			svg.selectAll("squareJun")
+				.enter()
+				.append("rect")
+				.attr("x", 500)
+				.attr("y", 60)
+				.attr("width", 10)
+				.attr("height", 10)
+				.attr("fill", "#696969");
+
+//create squares for legend - SENIOR
+			svg.selectAll("squareSen")
+				.enter()
+				.append("rect")
+				.attr("x", 500)
+				.attr("y", 80)
+				.attr("width", 10)
+				.attr("height", 10)
+				.attr("fill", "#939393");
+
+// //Add Legend circles
+//             svg.selectAll("circle")
+//                 .data(data)
+//                 .enter()
+//                 .append("circle")
+//                 .attr("cx", w+p+20)
+//                 .attr("cy", function(d,i){return 2*p+i*40})
+//                 .attr("r", 15)
+//                 .attr("fill", function(d,i){
+//                   return "rgb("+(i/(data.length+1))*0+","+(i/(data.length+1))*255+","+(1-i/(data.length+1))*255+")"
+//                 })
+//             //Add legend lables
+//             svg.selectAll("#Legend")
+//                 .data(data)
+//                 .enter()
+//                 .append("text")
+//                 .attr("x",w+p+40)
+//                 .attr("y",function(d,i){return 3+2*p+i*40})
+//                 .attr("fill", "black")
+//                 .attr("style","font-size:15px")
+//                 .text(function(d,i){return d.Year;});
 
 			//create labels FRESHMEN
 			svg.selectAll("labelFresh")
@@ -262,6 +322,23 @@
 							  .scale(yScale)
 							  .orient("left")
 							  .ticks(10);
+
+
+			//APPEND AXES LABELS
+ 			svg.append("text")
+                .attr("x",20)
+                .attr("y",175)
+                .attr("fill", "black")
+                .attr("transform","rotate(-90,10,"+(h/2+45)+")")
+                .attr("style","font-size:14px","font-family:sans-serif")
+                .text(function(){return "Number of Students";});
+			svg.append("text")
+                .attr("x",190)
+                .attr("y",12)
+                .attr("fill", "black")
+                .attr("style","font-size:14px","font-family: sans-serif")
+                .text(function(){return "IE Students at 5 Universities";});
+
 
 			//CALL AXES
 			//CALL X AXIS
