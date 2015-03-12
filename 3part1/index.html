@@ -159,24 +159,18 @@
 							  .ticks(10);
 
 			//
-			 svg.append("text")
-                .attr("x",w/2+chartPadding-50)
-                .attr("y",h+2*chartPadding-15)
-                .attr("fill", "black")
-                .attr("style","font-size:20px")
-                .text(function(){return "Universities";});
             svg.append("text")
-                .attr("x",-40)
-                .attr("y",h/2+chartPadding)
+                .attr("x",20)
+                .attr("y",175)
                 .attr("fill", "black")
                 .attr("transform","rotate(-90,10,"+(h/2+45)+")")
-                .attr("style","font-size:20px")
+                .attr("style","font-size:14px", "font-family:sans-serif")
                 .text(function(){return "Number of Seniors";});
 			svg.append("text")
-                .attr("x",w/2+chartPadding-50)
-                .attr("y",-15)
+                .attr("x",190)
+                .attr("y",12)
                 .attr("fill", "black")
-                .attr("style","font-size:20px")
+                .attr("style","font-size:14px", "font-family: sans-serif")
                 .text(function(){return "Senior IE Students at 5 Universities";});
 
 			//CALL AXES
