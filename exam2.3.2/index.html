@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset="utf-8">
+		<title>Exam2, Q3, Part 2</title>
+		<script type = "text/javascript" src="d3/d3.js"></script>
+		<style type = "text/css">
+			
+			h1 {
+				font-family: sacramento, cursive;
+			}
+
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: black;
+				shape-rendering: crispEdges;
+			}
+			
+			.axis text {
+				font-family: sans-serif;
+				font-size: 11px;
+			}
+
+		</style>
+		
+	</head>
+	<body>
+		
+		<h1>Exam2, Q3, Part 2</h1>
+
+		<p>Amanda Hobbs
+			<br>IE 590-007 with Dr. Ji Soo Yi
+			<br>April 24, 2015
+		</p>	
+
+		<script type = "text/javascript">
+		
+		// SUBSTANTIAL pieces of code was written with understanding from and code borrowed from "Interactive Data Visualization for the Web" by Scott Murray
+		// REFERENCE:
+		// Murray, S. (2013). Interactive Data Visualization for the Web. Sebastopol, CA: O’Reilly Media.
+
+
+			//Width and height
+			var w = 600;
+			var h = 250;
+			var chartPadding = 40;
+			var barPadding = 5;
+
+			var dataset;	//create global variable for all data set
+			var dataFresh;	//create global var for Freshmen
+			var dataSoph; 	//create global var for Sophmores
+			var dataJun;	//create global var for Juniors
+			var dataSen;	//create global var for Seniors
+
+			//CALL IN DATA
+			//var jsonUrl = "http://hivelab.org/static/exam1.json";
+			//d3.json(jsonUrl, function(error, data) {
+			d3.json("exam2.json", function(error, data) {
+ 				if (error) {
+ 					console.log(error);
+ 				}
+ 				else {
+  					console.log(data);
+
+  				//arrange data
+				dataset = data;
+				dataFresh = [
+					data[0][ 'University A' ],
+					data[0][ 'University B' ],
+					data[0][ 'University C' ],
+					data[0][ 'University D' ],
+					data[0][ 'University E' ]
+					];
+
+				dataSoph = [
+					data[1][ 'University A' ],
+					data[1][ 'University B' ],
+					data[1][ 'University C' ],
+					data[1][ 'University D' ],
+					data[1][ 'University E' ]
+					];
+
+				dataJun = [
+					data[2][ 'University A' ],
+					data[2][ 'University B' ],
+					data[2][ 'University C' ],
+					data[2][ 'University D' ],
+					data[2][ 'University E' ]
+					];
+
+				dataSen = [
+					data[3][ 'University A' ],
+					data[3][ 'University B' ],
+					data[3][ 'University C' ],
+					data[3][ 'University D' ],
+					data[3][ 'University E' ]
+					];
+
+				//other functions here for when data loads correctly	
+
+			//set xScale or yScale
+			var xScale = d3.scale.ordinal()
+							.domain([	"University A",
+										"University B",
+										"University C",
+										"University D",
+										"University E"])
+							.rangeRoundBands([0, w - chartPadding]);
+			var yScale = d3.scale.linear()
+							.domain([0, d3.max(dataSen)])
+							.range([h - chartPadding, 0]);
+
+			//Create SVG element
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+		
+			//create bars 
+			svg.selectAll("rect")
+				.data(dataSen)
+			    .enter()
+			    .append("rect")
+			    .attr("x", function(d, i) {
+			   		return chartPadding + barPadding + i * ((w - chartPadding) /dataSen.length); })
+			    .attr("y", function(d) {
+			   		return yScale(d) + chartPadding/2; })
+			    .attr("width", (w - chartPadding) / dataSen.length - barPadding)
+			    .attr("height", function(d) {
+			   		return h - yScale(d) - chartPadding; })
+			    .attr("fill", "#939393");
+
+			//create labels
+			svg.selectAll("text")
+			   .data(dataSen)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+			   		return d; })
+			   .attr("text-anchor", "middle")
+			   .attr("x", function(d, i) {
+			   		return chartPadding + i * ((w - chartPadding) / dataSen.length) + (w / dataSen.length) / 2; })
+			   .attr("y", function(d) {
+			   		return yScale(d) + chartPadding/2 + 18;})
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "14px")
+			   .attr("fill", "white");
+
+			//Define X axis
+			var xAxis = d3.svg.axis()
+							  .scale(xScale)
+							  .orient("bottom")
+							  .ticks(5);
+			//Define Y axis
+			var yAxis = d3.svg.axis()
+							  .scale(yScale)
+							  .orient("left")
+							  .ticks(10);
+
+			//
+            svg.append("text")
+                .attr("x",-15)
+                .attr("y",175)
+                .attr("fill", "black")
+                .attr("transform","rotate(-90,10,"+(h/2+45)+")")
+                .attr("style","font-size:14px","font-family:sans-serif")
+                .text(function(){return "Number of Senior Students";});
+			svg.append("text")
+                .attr("x",190)
+                .attr("y",12)
+                .attr("fill", "black")
+                .attr("style","font-size:14px","font-family: sans-serif")
+                .text(function(){return "Senior IE Students at 5 Universities";});
+
+			//CALL AXES
+			//CALL X AXIS
+			svg.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(" + chartPadding + "," + (h - chartPadding/2) + ")")
+				.call(xAxis);
+			
+			//CALL Y AXIS
+			svg.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(" + chartPadding + "," + (chartPadding/2) + ")")
+				.call(yAxis);
+
+
+			//FINAL CODE ENDING
+			}			
+		});
+	
+		</script>
+
+	</body>
+</html>
