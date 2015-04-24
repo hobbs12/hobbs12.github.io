@@ -35,7 +35,6 @@
 		</p>
 
 
-
 		<script type = "text/javascript">
 		
 		// SUBSTANTIAL pieces of code was written with understanding from and code borrowed from "Interactive Data Visualicaiton for the Web" by Scott Murray
@@ -48,11 +47,11 @@
 			var chartPadding = 40;
 			var barPadding = 5;
 
-			var dataset;	//create global variable for all data set
-			var dataFresh;	//create global var for Freshmen
-			var dataSoph; 	//create global var for Sophmores
-			var dataJun;	//create global var for Juniors
-			var dataSen;	//create global var for Seniors
+			var dataset = [];	//create global variable for all data set
+			var dataFresh = [];	//create global var for Freshmen
+			var dataSoph = []; 	//create global var for Sophmores
+			var dataJun = [];	//create global var for Juniors
+			var dataSen = [];	//create global var for Seniors
 
 			//CALL IN DATA
 			//var jsonUrl = "http://hivelab.org/static/exam1.json";
@@ -181,8 +180,6 @@
 			    .attr("height", function(d) {
 			   		return h - yScale(d) - chartPadding; })
 			    .attr("fill", "#939393");
-
-
 
 			//create labels FRESHMEN
 			svg.selectAll("labelFresh")
