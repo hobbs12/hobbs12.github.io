@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang = "en">
+	
 	<head>
 		<meta charset="utf-8">
 		<title>Exam2, Q3, Part 2</title>
 		<script type = "text/javascript" src="d3/d3.js"></script>
+		
 		<style type = "text/css">
 			
 			h1 {
 				font-family: sacramento, cursive;
 			}
-
-			.axis path,
-			.axis line {
-				fill: none;
-				stroke: black;
-				shape-rendering: crispEdges;
+			table {
+				height: 300px;
 			}
-			
-			.axis text {
-				font-family: sans-serif;
-				font-size: 11px;
+			th {
+				background-color: #D3D3D3;
+			}
+			tr {
+				background-color: #FFFFFF;
+			}
+			table, th, tr, td {
+				border: 1px solid black;
+				border-collapse: collapse;
+				text-align: right;
+				padding: 0px 20px 0px 10px;
 			}
 
 		</style>
@@ -27,171 +32,125 @@
 	</head>
 	<body>
 		
-		<h1>Exam2, Q3, Part 2</h1>
+		<h1>Exam2, Question 3, Part 2</h1>
 
 		<p>Amanda Hobbs
 			<br>IE 590-007 with Dr. Ji Soo Yi
 			<br>April 24, 2015
 		</p>	
-
+		<br>
+		<br>
+		
 		<script type = "text/javascript">
 		
-		// SUBSTANTIAL pieces of code was written with understanding from and code borrowed from "Interactive Data Visualization for the Web" by Scott Murray
-		// REFERENCE:
+		// SUBSTANTIAL pieces of code was written with understanding from and code borrowed from the following sources:
+		// REFERENCES:
 		// Murray, S. (2013). Interactive Data Visualization for the Web. Sebastopol, CA: O’Reilly Media.
+		// Rolle, O. (Unknown). Table sorting (from Oliver Rolle). Retrieved from http://bl.ocks.org/biovisualize/raw/1226718/
+		// URL: http://www.w3schools.com/css/css_table.asp
+		// URL: http://datatables.net/forums/discussion/17932/body-not-aligned-with-header-i-know-it-was-already-discussed
+		// URL: https://engineering.purdue.edu/HIVELab/wiki/uploads/Main/ss-lab.pdf
+		// URL: http://stackoverflow.com/questions/10939082/d3-javascript-alternate-colors-on-click
+
+		//create variable to dump data from online
+		var dataset;
+
+		d3  .select("body")
+			.append("div")
+ 			.style("height", 1000)
+ 			.style("width", 1000);
+
+ 		d3  .select("div")
+ 			.append("table");
+
+ 		table = d3.select("table");
+
+ 		table	.append("th");
+		table 	.append("tr");
 
 
-			//Width and height
-			var w = 600;
-			var h = 250;
-			var chartPadding = 40;
-			var barPadding = 5;
-
-			var dataset;	//create global variable for all data set
-			var dataFresh;	//create global var for Freshmen
-			var dataSoph; 	//create global var for Sophmores
-			var dataJun;	//create global var for Juniors
-			var dataSen;	//create global var for Seniors
-
-			//CALL IN DATA
-			//var jsonUrl = "http://hivelab.org/static/exam1.json";
-			//d3.json(jsonUrl, function(error, data) {
-			d3.json("exam2.json", function(error, data) {
- 				if (error) {
- 					console.log(error);
- 				}
- 				else {
-  					console.log(data);
-
-  				//arrange data
-				dataset = data;
-				dataFresh = [
-					data[0][ 'University A' ],
-					data[0][ 'University B' ],
-					data[0][ 'University C' ],
-					data[0][ 'University D' ],
-					data[0][ 'University E' ]
-					];
-
-				dataSoph = [
-					data[1][ 'University A' ],
-					data[1][ 'University B' ],
-					data[1][ 'University C' ],
-					data[1][ 'University D' ],
-					data[1][ 'University E' ]
-					];
-
-				dataJun = [
-					data[2][ 'University A' ],
-					data[2][ 'University B' ],
-					data[2][ 'University C' ],
-					data[2][ 'University D' ],
-					data[2][ 'University E' ]
-					];
-
-				dataSen = [
-					data[3][ 'University A' ],
-					data[3][ 'University B' ],
-					data[3][ 'University C' ],
-					data[3][ 'University D' ],
-					data[3][ 'University E' ]
-					];
-
-				//other functions here for when data loads correctly	
-
-			//set xScale or yScale
-			var xScale = d3.scale.ordinal()
-							.domain([	"University A",
-										"University B",
-										"University C",
-										"University D",
-										"University E"])
-							.rangeRoundBands([0, w - chartPadding]);
-			var yScale = d3.scale.linear()
-							.domain([0, d3.max(dataSen)])
-							.range([h - chartPadding, 0]);
-
-			//Create SVG element
-			var svg = d3.select("body")
-						.append("svg")
-						.attr("width", w)
-						.attr("height", h);
+		//CALL IN DATA
+		//CODE FROM https://hivelab.org/static/exam2.json
+		//STRUCUTRE: d3.json(jsonUrl, function(error, data) {
 		
-			//create bars 
-			svg.selectAll("rect")
-				.data(dataSen)
-			    .enter()
-			    .append("rect")
-			    .attr("x", function(d, i) {
-			   		return chartPadding + barPadding + i * ((w - chartPadding) /dataSen.length); })
-			    .attr("y", function(d) {
-			   		return yScale(d) + chartPadding/2; })
-			    .attr("width", (w - chartPadding) / dataSen.length - barPadding)
-			    .attr("height", function(d) {
-			   		return h - yScale(d) - chartPadding; })
-			    .attr("fill", "#939393");
+		//d3.json("exam2.json", function(error, data) {
+		//The line above^^ pulls JSON data from file on computer/GitHub, NOT from the internet
 
-			//create labels
-			svg.selectAll("text")
-			   .data(dataSen)
-			   .enter()
-			   .append("text")
-			   .text(function(d) {
-			   		return d; })
-			   .attr("text-anchor", "middle")
-			   .attr("x", function(d, i) {
-			   		return chartPadding + i * ((w - chartPadding) / dataSen.length) + (w / dataSen.length) / 2; })
-			   .attr("y", function(d) {
-			   		return yScale(d) + chartPadding/2 + 18;})
-			   .attr("font-family", "sans-serif")
-			   .attr("font-size", "14px")
-			   .attr("fill", "white");
+		d3.json("https://hivelab.org/static/exam2.json", function(error, data){
 
-			//Define X axis
-			var xAxis = d3.svg.axis()
-							  .scale(xScale)
-							  .orient("bottom")
-							  .ticks(5);
-			//Define Y axis
-			var yAxis = d3.svg.axis()
-							  .scale(yScale)
-							  .orient("left")
-							  .ticks(10);
-
-			//
-            svg.append("text")
-                .attr("x",-15)
-                .attr("y",175)
-                .attr("fill", "black")
-                .attr("transform","rotate(-90,10,"+(h/2+45)+")")
-                .attr("style","font-size:14px","font-family:sans-serif")
-                .text(function(){return "Number of Senior Students";});
-			svg.append("text")
-                .attr("x",190)
-                .attr("y",12)
-                .attr("fill", "black")
-                .attr("style","font-size:14px","font-family: sans-serif")
-                .text(function(){return "Senior IE Students at 5 Universities";});
-
-			//CALL AXES
-			//CALL X AXIS
-			svg.append("g")
-				.attr("class", "axis")
-				.attr("transform", "translate(" + chartPadding + "," + (h - chartPadding/2) + ")")
-				.call(xAxis);
+			if (error) {
+				console.log(error);
+			}
+			else {
+				console.log(data);
 			
-			//CALL Y AXIS
-			svg.append("g")
-				.attr("class", "axis")
-				.attr("transform", "translate(" + chartPadding + "," + (chartPadding/2) + ")")
-				.call(yAxis);
+			//log data into variable dataset;
+			dataset = data;
+
+		//ADD COLUMN NAMES INTO TABLE HEADER (FIRST ROW)
+		var th = table.select("th")
+						.selectAll("th")
+						.data(d3.keys (dataset[0]) )
+						.enter()
+						.append("th")
+						.attr("onclick", function (d, i) { return "transform('" + d[0] + "');";})
+            			.text(function(d) { return d; })
+            			;
+
+		//ADD SUBSEQUENT ROWS
+		var tr = table.select("tr")
+						.selectAll("tr")
+						.data(dataset)
+						.enter()
+						.append("tr")
+						//.text(function(d){return d})
+						//.sort(function (a, b) { return a == null || b == null ? 0 : stringCompare(a[attrName], b[attrName]); });
 
 
-			//FINAL CODE ENDING
-			}			
-		});
-	
+		//ADD INTERACTIONS (we are still in ROWS)
+		//click should make the row green
+		.on("click", function() {
+            d3.selectAll("tr")
+              	.style("background-color", "#FFFFFF") //white
+              	.classed("clicked", false);
+            d3.select(this)
+            	.style("background-color", "#619661") //darker green
+            	.classed("clicked", true);
+            })
+		//on hover aka mouseover, make row yellow if not clicked, darker green if clicked
+	 	.on("mouseover", function() {
+            if (d3.select(this).classed("clicked") == true) {
+            	d3.select(this).style("background-color", "#619661"); //darker green
+            }
+            else {
+                d3.select(this).style("background-color", "#FFFF99"); //yellow
+            }
+            })
+	 	//when un-hovered aka not mouseovered, make a clicked row back to the lighter green and an unclicked row back to white
+		.on("mouseout", function() {
+            if (d3.select(this).classed("clicked") == true) {
+                d3.select(this).style("background-color", "#7ABC7A"); //green
+            }
+            else
+            {
+                d3.select(this).style("background-color", "#FFFFFF"); //white
+            }
+        	})
+		;
+
+
+		//ADD DATA INTO TABLE CELLS
+		var td = tr.selectAll("td")
+					.data(function(d) { return d3.values(d); })
+          			.enter()
+          			.append("td")
+            		//.attr("onclick", function (d, i) { return "transform('" + d[0] + "');";})
+            		//possible soritng method ^^ but I don't know what I am doing
+            		.text(function(d) { return d; });
+
+
+			} //this ends the else statement for when data load does not show error
+		}); //this ends the d3.json function to call in data
 		</script>
-
 	</body>
 </html>
