@@ -114,7 +114,7 @@
               	.style("background-color", "#FFFFFF") //white
               	.classed("clicked", false);
             d3.select(this)
-            	.style("background-color", "#7ABC7A") //green
+            	.style("background-color", "#619661") //darker green
             	.classed("clicked", true);
             })
 		//on hover aka mouseover, make row yellow if not clicked, darker green if clicked
@@ -145,6 +145,7 @@
           			.enter()
           			.append("td")
             		//.attr("onclick", function (d, i) { return "transform('" + d[0] + "');";})
+            		//possible soritng method ^^ but I don't know what I am doing
             		.text(function(d) { return d; });
 
 
